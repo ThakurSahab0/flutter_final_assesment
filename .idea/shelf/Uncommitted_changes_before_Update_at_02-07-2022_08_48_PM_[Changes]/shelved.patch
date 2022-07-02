@@ -1,0 +1,115 @@
+Index: lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\nimport 'screens/completion_screen.dart';\r\nimport 'screens/get_started.dart';\r\nimport 'screens/login_screen.dart';\r\n\r\nvoid main() => runApp(const MyApp());\r\n\r\nclass MyApp extends StatelessWidget {\r\n  const MyApp({Key? key}) : super(key: key);\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return MaterialApp( \r\n      title: 'Flutter Live Coding Challenge',\r\n      debugShowCheckedModeBanner: false,\r\n      theme: ThemeData(\r\n          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)\r\n              .copyWith(\r\n                  primary: Colors.deepPurple, secondary: Colors.purpleAccent)),\r\n      home: const GetStarted(),\r\n      routes: {\r\n        GetStarted.routename: (context) => const GetStarted(),\r\n        LoginScreen.routename: (context) => const LoginScreen(),\r\n        CompletionScreen.routename: (context) => const CompletionScreen(),\r\n      },\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/main.dart b/lib/main.dart
+--- a/lib/main.dart	(revision 72473d125c75d97a3311ff500e51fca63421f1ce)
++++ b/lib/main.dart	(date 1656773991093)
+@@ -11,11 +11,11 @@
+ 
+   @override
+   Widget build(BuildContext context) {
+-    return MaterialApp( 
++    return MaterialApp(
+       title: 'Flutter Live Coding Challenge',
+       debugShowCheckedModeBanner: false,
+       theme: ThemeData(
+-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple)
++          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+               .copyWith(
+                   primary: Colors.deepPurple, secondary: Colors.purpleAccent)),
+       home: const GetStarted(),
+Index: lib/screens/login_screen.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\nimport 'completion_screen.dart';\r\nimport '../widgets/text_field_builder.dart';\r\n\r\nclass LoginScreen extends StatefulWidget {\r\n  static const routename = '/login_screen';\r\n\r\n  const LoginScreen({Key? key}) : super(key: key);\r\n\r\n  @override\r\n  State<LoginScreen> createState() => _LoginScreenState();\r\n}\r\n\r\nclass _LoginScreenState extends State<LoginScreen> {\r\n  final nameController = TextEditingController();\r\n  final emailController = TextEditingController();\r\n\r\n  var text = '';\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      appBar: AppBar(\r\n        title: const Text(\r\n          \"Get Your Certificate\",\r\n          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),\r\n        ),\r\n        centerTitle: true,\r\n      ),\r\n      backgroundColor: Colors.white,\r\n      body: SingleChildScrollView(\r\n        padding: const EdgeInsets.symmetric(horizontal: 10),\r\n        child: Column(\r\n          children: [\r\n            // Text(\r\n            //   'Login',\r\n            //   style: TextStyle(\r\n            //     color: Theme.of(context).colorScheme.primary,\r\n            //     fontSize: 24,\r\n            //     fontWeight: FontWeight.bold,\r\n            //   ),\r\n            // ),\r\n            Image.asset('assets/images/login.webp'),\r\n            // const SizedBox(height: 20),\r\n            TextFieldBuilder(\r\n              icon: const Icon(Icons.account_circle_sharp),\r\n              labelText: \"Enter your Name\",\r\n              textType: TextInputType.name,\r\n              controller: nameController,\r\n            ),\r\n            const SizedBox(height: 20),\r\n            TextFieldBuilder(\r\n              icon: const Icon(Icons.email),\r\n              labelText: 'Enter your Email',\r\n              textType: TextInputType.emailAddress,\r\n              controller: emailController,\r\n            ),\r\n            const SizedBox(height: 20),\r\n            ElevatedButton(\r\n              onPressed: () {\r\n                setState(() {\r\n                  nameController.text.isEmpty || emailController.text.isEmpty\r\n                      ? text = 'Please fill all fields properly!'\r\n                      : Navigator.pushNamed(context, CompletionScreen.routename,\r\n                          arguments: nameController.text);\r\n                });\r\n              },\r\n              style: ElevatedButton.styleFrom(\r\n                elevation: 10,\r\n                minimumSize: const Size(200, 60),\r\n                shape: RoundedRectangleBorder(\r\n                    borderRadius: BorderRadius.circular(20)),\r\n              ),\r\n              child: const Text(\r\n                'Login',\r\n                style: TextStyle(fontSize: 24),\r\n              ),\r\n            ),\r\n            const SizedBox(height: 20),\r\n            Center(\r\n              child: Text(\r\n                text.isEmpty ? \"\" : text,\r\n                textAlign: TextAlign.center,\r\n                style: const TextStyle(\r\n                  fontSize: 22,\r\n                  color: Colors.red,\r\n                  fontWeight: FontWeight.bold,\r\n                ),\r\n              ),\r\n            )\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/screens/login_screen.dart b/lib/screens/login_screen.dart
+--- a/lib/screens/login_screen.dart	(revision 72473d125c75d97a3311ff500e51fca63421f1ce)
++++ b/lib/screens/login_screen.dart	(date 1656774325347)
+@@ -33,14 +33,6 @@
+         padding: const EdgeInsets.symmetric(horizontal: 10),
+         child: Column(
+           children: [
+-            // Text(
+-            //   'Login',
+-            //   style: TextStyle(
+-            //     color: Theme.of(context).colorScheme.primary,
+-            //     fontSize: 24,
+-            //     fontWeight: FontWeight.bold,
+-            //   ),
+-            // ),
+             Image.asset('assets/images/login.webp'),
+             // const SizedBox(height: 20),
+             TextFieldBuilder(
+Index: lib/screens/completion_screen.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\nimport 'package:intl/intl.dart';\r\n\r\nclass CompletionScreen extends StatelessWidget {\r\n  static const routename = '/completion_screen';\r\n  final String name;\r\n\r\n  const CompletionScreen({super.key, this.name = ''});\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    final name = ModalRoute.of(context)!.settings.arguments as String;\r\n    var headerText = RichText(\r\n      text: TextSpan(\r\n        style: const TextStyle(\r\n          fontSize: 24,\r\n          fontWeight: FontWeight.bold,\r\n          color: Colors.black,\r\n        ),\r\n        children: [\r\n          const TextSpan(text: 'Hi, '),\r\n          TextSpan(\r\n            text: name,\r\n            style: TextStyle(color: Theme.of(context).colorScheme.primary),\r\n          )\r\n        ],\r\n      ),\r\n    );\r\n    var bodyText = RichText(\r\n      text: TextSpan(\r\n        style: const TextStyle(fontSize: 20, color: Colors.black),\r\n        children: [\r\n          const TextSpan(\r\n              text:\r\n                  'You have successfully completed Hybrid Mobile App Development Course.\\n\\n',\r\n              style: TextStyle(fontWeight: FontWeight.w700)),\r\n          const TextSpan(\r\n            text: 'INSTRUCTOR NAME\\n',\r\n            style: TextStyle(fontWeight: FontWeight.bold),\r\n          ),\r\n          TextSpan(\r\n            text: 'Pankaj Kapoor\\n',\r\n            style: TextStyle(\r\n                color: Theme.of(context).colorScheme.primary,\r\n                fontWeight: FontWeight.bold),\r\n          ),\r\n        ],\r\n      ),\r\n    );\r\n    return SafeArea(\r\n      child: Scaffold(\r\n        backgroundColor: Colors.white,\r\n        body: Padding(\r\n          padding: const EdgeInsets.all(20),\r\n          child: Column(\r\n            crossAxisAlignment: CrossAxisAlignment.stretch,\r\n            children: [\r\n              headerText,\r\n              const SizedBox(height: 10),\r\n              Image.asset('assets/images/certificate.jpg'),\r\n              const SizedBox(height: 60),\r\n              bodyText,\r\n              const SizedBox(height: 20),\r\n              Text(\r\n                'Date: ${DateFormat.yMMMd().format(DateTime.now())}',\r\n                textAlign: TextAlign.right,\r\n                style: const TextStyle(fontWeight: FontWeight.w800),\r\n              )\r\n            ],\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/screens/completion_screen.dart b/lib/screens/completion_screen.dart
+--- a/lib/screens/completion_screen.dart	(revision 72473d125c75d97a3311ff500e51fca63421f1ce)
++++ b/lib/screens/completion_screen.dart	(date 1656774212575)
+@@ -15,7 +15,7 @@
+         style: const TextStyle(
+           fontSize: 24,
+           fontWeight: FontWeight.bold,
+-          color: Colors.black,
++          color: Colors.black87,
+         ),
+         children: [
+           const TextSpan(text: 'Hi, '),
+@@ -28,7 +28,7 @@
+     );
+     var bodyText = RichText(
+       text: TextSpan(
+-        style: const TextStyle(fontSize: 20, color: Colors.black),
++        style: const TextStyle(fontSize: 20, color: Colors.black54),
+         children: [
+           const TextSpan(
+               text:
+@@ -49,7 +49,7 @@
+     );
+     return SafeArea(
+       child: Scaffold(
+-        backgroundColor: Colors.white,
++        backgroundColor: Colors.white70,
+         body: Padding(
+           padding: const EdgeInsets.all(20),
+           child: Column(
+Index: README.md
+===================================================================
+diff --git a/README.md b/README.md
+deleted file mode 100644
+--- a/README.md	(revision 72473d125c75d97a3311ff500e51fca63421f1ce)
++++ /dev/null	(revision 72473d125c75d97a3311ff500e51fca63421f1ce)
+@@ -1,21 +0,0 @@
+-![View Counter](https://komarev.com/ghpvc/?username=flutter-live-coding-challenge&label=View%20Counter&color=red&style=flat) &nbsp; &nbsp; ![Repo Size](https://img.shields.io/github/repo-size/rajput-hemant/flutter-live-coding-challenge?color=blue)
+-
+-# Flutter Live Coding Challenge [<kbd> ![](https://img.icons8.com/material/20/undefined/downloads.png) </kbd>]() 
+-
+-A new Flutter project JoVAC Assessment.
+-
+-## Building from Source
+-
+-- If you don't have Flutter SDK installed, please visit official [Flutter](https://flutter.dev/) site.
+-- Fetch latest source code from master branch.
+-
+-```console
+-rajput-hemant@arch:~$ git clone https://github.com/rajput-hemant/flutter-live-coding-challenge
+-```
+-
+-- Run the app with Android Studio or VS Code. Or the command line:
+-
+-```console
+-rajput-hemant@arch:~$ flutter pub get
+-rajput-hemant@arch:~$ flutter run
+-```
+\ No newline at end of file
